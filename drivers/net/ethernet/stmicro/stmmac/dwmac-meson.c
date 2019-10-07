@@ -107,7 +107,13 @@ static void meson6_dwmac_fix_mac_speed(void *priv, unsigned int speed)
 
 /*these two store the define of wol in dts*/
 extern unsigned int support_internal_phy_wol;
+
+#ifdef CONFIG_REALTEK_PHY
 extern unsigned int support_external_phy_wol;
+#else
+static unsigned int support_external_phy_wol = 0;
+#endif
+
 static unsigned int support_mac_wol;
 static void __iomem *network_interface_setup(struct platform_device *pdev)
 {
@@ -378,6 +384,7 @@ static void __iomem *g12a_network_interface_setup(struct platform_device *pdev)
 
 	/*config extern phy*/
 	if (internal_phy == 0) {
+#ifdef CONFIG_REALTEK_PHY
 		if (of_property_read_u32(np, "tx_delay", &external_tx_delay))
 			pr_debug("set exphy tx delay\n");
 		if (of_property_read_u32(np, "rx_delay", &external_rx_delay))
@@ -389,6 +396,7 @@ static void __iomem *g12a_network_interface_setup(struct platform_device *pdev)
 				writel(0x1621, REG_ETH_reg0_addr);
 			}
 		}
+#endif
 		/* only exphy support wol since g12a*/
 		/*we enable/disable wol with item in dts with "wol=<1>"*/
 		if (of_property_read_u32(np, "wol",
@@ -540,8 +548,10 @@ void meson6_dwmac_shutdown(struct platform_device *pdev)
 	}
 	stmmac_pltfr_suspend(&pdev->dev);
 
+#ifdef CONFIG_REALTEK_PHY
 	if (is_meson_gxm_cpu() || is_meson_g12a_cpu() || is_meson_g12b_cpu())
 		rtl8211f_shutdown();
+#endif
 }
 
 #endif

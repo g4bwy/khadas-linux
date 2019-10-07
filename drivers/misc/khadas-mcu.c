@@ -110,7 +110,9 @@ extern void send_power_key(int state);
 extern void realtek_enable_wol(int enable, bool is_shutdown);
 void mcu_enable_wol(int enable, bool is_shutdown)
 {
+#ifdef CONFIG_REALTEK_PHY
 	realtek_enable_wol(enable, is_shutdown);
+#endif
 }
 
 static int i2c_master_reg8_send(const struct i2c_client *client,

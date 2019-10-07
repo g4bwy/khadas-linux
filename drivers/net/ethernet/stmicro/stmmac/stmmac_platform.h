@@ -33,8 +33,10 @@ int stmmac_pltfr_remove(struct platform_device *pdev);
 #ifdef CONFIG_AMLOGIC_ETH_PRIVE
 int stmmac_pltfr_suspend(struct device *dev);
 int stmmac_pltfr_resume(struct device *dev);
+#ifdef CONFIG_REALTEK_PHY
 extern unsigned int external_rx_delay;
 extern unsigned int external_tx_delay;
+#endif
 #endif
 extern const struct dev_pm_ops stmmac_pltfr_pm_ops;
 
