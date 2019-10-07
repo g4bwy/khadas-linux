@@ -207,7 +207,7 @@ static inline void dev_pm_opp_cpumask_remove_table(const struct cpumask *cpumask
 int dev_pm_opp_of_add_table(struct device *dev);
 void dev_pm_opp_of_remove_table(struct device *dev);
 int dev_pm_opp_of_cpumask_add_table(const struct cpumask *cpumask);
-#ifdef CONFIG_AMLOGIC_MODIFY
+#if 1 //def CONFIG_AMLOGIC_MODIFY
 int dev_pm_opp_of_add_table_indexed(struct device *dev, int index);
 int dev_pm_opp_of_cpumask_add_table_indexed(const struct cpumask *cpumask,
 		int index);

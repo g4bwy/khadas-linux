@@ -471,7 +471,7 @@ int dev_pm_opp_of_add_table(struct device *dev)
 }
 EXPORT_SYMBOL_GPL(dev_pm_opp_of_add_table);
 
-#ifdef CONFIG_AMLOGIC_MODIFY
+#if 1 //def CONFIG_AMLOGIC_MODIFY
 /**
  * dev_pm_opp_of_add_table_indexed() - Initialize indexed opp
  *table from device tree
@@ -587,7 +587,7 @@ int dev_pm_opp_of_cpumask_add_table(const struct cpumask *cpumask)
 }
 EXPORT_SYMBOL_GPL(dev_pm_opp_of_cpumask_add_table);
 
-#ifdef CONFIG_AMLOGIC_MODIFY
+#if 1 //def CONFIG_AMLOGIC_MODIFY
 /**
  * dev_pm_opp_of_cpumask_add_table_index() - Adds OPP table for @cpumask
  * @cpumask:	cpumask for which OPP table needs to be added.
