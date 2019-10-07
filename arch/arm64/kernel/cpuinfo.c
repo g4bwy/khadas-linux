@@ -170,9 +170,10 @@ static int c_show(struct seq_file *m, void *v)
 	for (i = 0; i < 16; i++)
 		seq_printf(m, "%02x", chipid[i]);
 	seq_puts(m, "\n");
-#endif
 
 	seq_printf(m, "Hardware\t: %s\n", machine_model);
+#endif
+
 	return 0;
 }
 
