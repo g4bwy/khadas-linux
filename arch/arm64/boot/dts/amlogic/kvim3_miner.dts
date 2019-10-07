@@ -22,8 +22,8 @@
 #include "khadas-ts050-panel.dtsi"
 
 / {
-	model = "Khadas VIM3";
-	amlogic-dt-id = "g12b_kvim3";
+	model = "Khadas VIM3 Miner";
+	amlogic-dt-id = "g12b_kvim3_miner";
 	compatible = "amlogic, g12b";
 	interrupt-parent = <&gic>;
 	#address-cells = <2>;
@@ -91,6 +91,7 @@
 			reusable;
 			size = <0x0 0x8000000>;
 			alignment = <0x0 0x400000>;
+			status = "disabled";
 		};
 
 		//di_reserved:linux,di {
@@ -185,7 +186,7 @@
 		};
 	};
 	galcore {
-		status = "okay";
+		status = "disabled";
 		memory-region = <&galcore_reserved>;
 	};
 	gpioleds {
@@ -204,7 +205,7 @@
 	cvbsout {
 		compatible = "amlogic, cvbsout-g12b";
 		dev_name = "cvbsout";
-		status = "okay";
+		status = "disabled";
 		clocks = <&clkc CLKID_VCLK2_ENCI
 			&clkc CLKID_VCLK2_VENCI0
 			&clkc CLKID_VCLK2_VENCI1
@@ -233,7 +234,7 @@
 	bt-dev{
 		compatible = "amlogic, bt-dev";
 		dev_name = "bt-dev";
-		status = "okay";
+		status = "disabled";
 		gpio_reset = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
 		gpio_hostwake = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
 	};
@@ -241,7 +242,7 @@
 	wifi{
 		compatible = "amlogic, aml_wifi";
 		dev_name = "aml_wifi";
-		status = "okay";
+		status = "disabled";
 		interrupt_pin = <&gpio GPIOX_7 GPIO_ACTIVE_HIGH>;
 		irq_trigger_type = "GPIO_IRQ_LOW";
 		power_on_pin = <&gpio GPIOX_6 GPIO_ACTIVE_HIGH>;
@@ -276,14 +277,14 @@
 		compatible = "amlogic, codec, mm";
 		memory-region = <&codec_mm_cma &codec_mm_reserved>;
 		dev_name = "codec_mm";
-		status = "okay";
+		status = "disabled";
 	};
 
 	ppmgr {
 		compatible = "amlogic, ppmgr";
 		memory-region = <&ppmgr_reserved>;
 		dev_name = "ppmgr";
-		status = "okay";
+		status = "disabled";
 	};
 
 	gpiomem {
@@ -296,12 +297,12 @@
 		compatible = "amlogic, picdec";
 		memory-region = <&picdec_cma_reserved>;
 		dev_name = "picdec";
-		status = "okay";
+		status = "disabled";
 	};
 
 	deinterlace {
 		compatible = "amlogic, deinterlace";
-		status = "okay";
+		status = "disabled";
 		/* 0:use reserved; 1:use cma; 2:use cma as reserved */
 		flag_cma = <1>;
 		//memory-region = <&di_reserved>;
@@ -326,7 +327,7 @@
 	ionvideo {
 		compatible = "amlogic, ionvideo";
 		dev_name = "ionvideo";
-		status = "okay";
+		status = "disabled";
 	};
 
 	gpio_keypad {
@@ -475,7 +476,7 @@
 	amlvecm {
 		compatible = "amlogic, vecm";
 		dev_name = "aml_vecm";
-		status = "okay";
+		status = "disabled";
 		gamma_en = <0>;/*1:enabel ;0:disable*/
 		wb_en = <0>;/*1:enabel ;0:disable*/
 		cm_en = <0>;/*1:enabel ;0:disable*/
@@ -483,7 +484,7 @@
 	amdolby_vision {
 		compatible = "amlogic, dolby_vision_g12a";
 		dev_name = "aml_amdolby_vision_driver";
-		status = "okay";
+		status = "disabled";
 		tv_mode = <0>;/*1:enabel ;0:disable*/
 	};
 
@@ -491,12 +492,12 @@
 	pdm_codec:dummy{
 		#sound-dai-cells = <0>;
 		compatible = "amlogic, pdm_dummy_codec";
-		status = "okay";
+		status = "disabled";
 	};
 	dummy_codec:dummy{
 		#sound-dai-cells = <0>;
 		compatible = "linux,spdif-dit";
-		status = "okay";
+		status = "disabled";
 	};
 	amlogic_codec:t9015{
 		#sound-dai-cells = <0>;
@@ -504,7 +505,7 @@
 		reg = <0x0 0xFF632000 0x0 0x2000>;
 		is_auge_used = <1>; /* meson or auge chipset used */
 		tdmout_index = <1>;
-		status = "okay";
+		status = "disabled";
 	};
 	audio_effect:eqdrc{
 		/*eq_enable = <1>;*/
@@ -521,11 +522,13 @@
 		lane_mask = <0x1>;
 		/* max 0xff, each bit for one channel */
 		channel_mask = <0x3>;
+		status = "disabled";
 	};
 	auge_sound {
 		compatible = "amlogic, g12a-sound-card";
 		aml-audio-card,name = "AML-AUGESOUND";
 
+		status = "disabled";
 		//aml-audio-card,loopback = <&aml_loopback>;
 		//aml-audio-card,aux-devs = <&amlogic_codec>;
 		/*for audio effect ,eqdrc */
@@ -640,7 +643,7 @@
 		interrupt-names = "irq";
 		frequency = <49000000>; /* pll */
 		dividor = <49>; /* locker's parent */
-		status = "okay";
+		status = "disabled";
 	};
 	/* Audio Related end */
 
@@ -783,7 +786,7 @@
 };
 
 &meson_fb {
-	status = "okay";
+	status = "disabled";
 	display_size_default = <1920 1080 1920 2160 32>;
 	mem_size = <0x00800000 0x4b80000 0x100000 0x100000 0x800000>;
 	logo_addr = "0x7f800000";
@@ -860,6 +863,7 @@
 		clock-names = "mclk", "clk_srcpll";
 		pinctrl-names = "tdm_pins";
 		pinctrl-0 = <&tdmout_a &tdmin_a>;
+		status = "disabled";
 	};
 
 	aml_tdmb: tdmb {
@@ -884,6 +888,7 @@
 		 * 4: spdifout_b;
 		 */
 		samesource_sel = <3>;
+		status = "disabled";
 	};
 
 	aml_tdmc: tdmc {
@@ -899,6 +904,7 @@
 		clock-names = "mclk", "clk_srcpll";
 		pinctrl-names = "tdm_pins";
 		pinctrl-0 = <&tdmc_mclk &tdmout_c &tdmin_c>;
+		status = "disabled";
 	};
 
 	/* copy a useless tdm to output for hdmi, no pinmux */
@@ -913,7 +919,7 @@
 
 		i2s2hdmi = <1>;
 
-		status = "okay";
+		status = "disabled";
 	};
 
 	aml_spdif: spdif {
@@ -935,7 +941,7 @@
 					"spdif_pins_mute";
 		pinctrl-0 = <&spdifout>;
 		pinctrl-1 = <&spdifout_a_mute>;
-		status = "okay";
+		status = "disabled";
 	};
 	aml_spdif_b: spdif_b {
 		compatible = "amlogic, g12a-snd-spdif-b";
@@ -963,7 +969,7 @@
 		pinctrl-names = "pdm_pins";
 		pinctrl-0 = <&pdmin>;
 		filter_mode = <1>; /* mode 0~4, defalut:1 */
-		status = "okay";
+		status = "disabled";
 	};
 	aml_loopback: loopback {
 		compatible = "amlogic, snd-loopback";
@@ -1159,13 +1165,13 @@
 };
 
 &audio_data {
-	status = "okay";
+	status = "disabled";
 };
 
 /*if you want to use vdin just modify status to "ok"*/
 &vdin0 {
 	memory-region = <&vdin0_cma_reserved>;
-	status = "okay";
+	status = "disabled";
 	/*vdin write mem color depth support:
 	 *bit0:support 8bit
 	 *bit1:support 9bit
@@ -1177,7 +1183,7 @@
 };
 &vdin1 {
 	memory-region = <&vdin1_cma_reserved>;
-	status = "okay";
+	status = "disabled";
 	/*vdin write mem color depth support:
 	 *bit0:support 8bit
 	 *bit1:support 9bit
@@ -1289,4 +1295,52 @@
 
 &remote {
 	status = "okay";
+};
+
+&amhdmitx {
+	status = "disabled";
+};
+
+&gpu {
+	status = "disabled";
+};
+
+&ge2d {
+	status = "disabled";
+};
+
+&meson_amvideom {
+	status = "disabled";
+};
+
+&canvas {
+	status = "disabled";
+};
+
+&vdac {
+	status = "disabled";
+};
+
+&vout {
+	status = "disabled";
+};
+
+&vout2 {
+	status = "disabled";
+};
+
+&aocec {
+	status = "disabled";
+};
+
+&vpu {
+	status = "disabled";
+};
+
+&ion_dev {
+	status = "disabled";
+};
+
+&lcd {
+	status = "disabled";
 };
