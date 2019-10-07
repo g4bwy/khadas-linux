@@ -341,7 +341,7 @@
 		sys_poweroff = <0x84000008>;
 	};
 
-	vpu {
+	vpu:vpu {
 		compatible = "amlogic, vpu-g12b";
 		dev_name = "vpu";
 		status = "okay";
@@ -824,7 +824,7 @@
 			};
 		};/* end of hiubus*/
 
-		ion_dev {
+		ion_dev:ion_dev {
 			compatible = "amlogic, ion_dev";
 			memory-region = <&ion_cma_reserved>;
 		};/* end of ion_dev*/
@@ -1102,13 +1102,13 @@
 		vdin_id = <1>;
 	};
 
-	vout {
+	vout: vout {
 		compatible = "amlogic, vout";
 		dev_name = "vout";
 		status = "okay";
 	};
 
-	vout2 {
+	vout2: vout2 {
 		compatible = "amlogic, vout2";
 		dev_name = "vout";
 		status = "okay";
@@ -1118,7 +1118,7 @@
 			"vpu_clkc";
 	};
 
-	vdac {
+	vdac: vdac {
 		compatible = "amlogic, vdac-g12b";
 		status = "okay";
 	};
@@ -1130,7 +1130,7 @@
 		reg = <0x0 0xff638000 0x0 0x2000>;
 	};
 
-	ge2d {
+	ge2d: ge2d {
 		compatible = "amlogic, ge2d-g12a";
 		dev_name = "ge2d";
 		status = "okay";
@@ -1145,7 +1145,7 @@
 		reg = <0x0 0xff940000 0x0 0x10000>;
 	};
 
-	meson-amvideom {
+	meson_amvideom: meson-amvideom {
 		compatible = "amlogic, amvideom";
 		dev_name = "amvideom";
 		status = "okay";
