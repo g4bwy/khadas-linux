@@ -117,11 +117,13 @@
 			 */
 			size = <0x0 0x02800000>;
 			alignment = <0x0 0x400000>;
+			status = "disabled";
 		};
 		/*  POST PROCESS MANAGER */
 		ppmgr_reserved:linux,ppmgr {
 			compatible = "shared-dma-pool";
 			size = <0x0 0x0>;
+			status = "disabled";
 		};
 		codec_mm_cma:linux,codec_mm_cma {
 			compatible = "shared-dma-pool";
@@ -130,6 +132,7 @@
 			size = <0x0 0x13400000>;
 			alignment = <0x0 0x400000>;
 			linux,contiguous-region;
+			status = "disabled";
 		};
 		/* codec shared reserved */
 		codec_mm_reserved:linux,codec_mm_reserved {
@@ -137,6 +140,7 @@
 			size = <0x0 0x0>;
 			alignment = <0x0 0x100000>;
 			//no-map;
+			status = "disabled";
 		};
 		/*  vdin0 CMA pool */
 		vdin0_cma_reserved:linux,vdin0_cma {
@@ -145,6 +149,7 @@
 		/* 1920x1080x2x4  =16+4 M */
 			size = <0x0 0x04000000>;
 			alignment = <0x0 0x400000>;
+			status = "disabled";
 		};
 		/*  vdin1 CMA pool */
 		vdin1_cma_reserved:linux,vdin1_cma {
@@ -153,6 +158,7 @@
 			/* 1920x1080x2x4  =16 M */
 			size = <0x0 0x04000000>;
 			alignment = <0x0 0x400000>;
+			status = "disabled";
 		};
 		galcore_reserved:linux,galcore {
 			compatible = "shared-dma-pool";
@@ -160,12 +166,13 @@
 			size = <0x0 0x1000000>;
 			alignment = <0x0 0x400000>;
 			linux,contiguous-region;
+			status = "disabled";
 		};
 
 		isp_cma_reserved:linux,isp_cma {
 			compatible = "shared-dma-pool";
 			reusable;
-			status = "okay";
+			status = "disabled";
 			size = <0x0 0x1f000000>;
 			alignment = <0x0 0x400000>;
 		};
@@ -173,14 +180,14 @@
 		adapt_cma_reserved:linux,adapt_cma {
 			compatible = "shared-dma-pool";
 			reusable;
-			status = "okay";
+			status = "disabled";
 			size = <0x0 0x03000000>;
 			alignment = <0x0 0x400000>;
 		};
 		gdc_cma_reserved:linux,gdc_cma {
 			compatible = "shared-dma-pool";
 			reusable;
-			status = "okay";
+			status = "disabled";
 			size = <0x0 0x04000000>;
 			alignment = <0x0 0x400000>;
 		};
